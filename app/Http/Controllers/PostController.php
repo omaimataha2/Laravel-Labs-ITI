@@ -46,4 +46,19 @@ class PostController extends Controller
         }
 
     }
+
+    public function update($id)
+    {
+
+        $allPosts = $this->posts;
+        foreach($allPosts as $key=> $post){
+            if ($key+1 ==$id){
+                return view('posts.update',[
+                    'post' => $post,
+                ]);
+            }
+
+        }
+
+    }
 }
