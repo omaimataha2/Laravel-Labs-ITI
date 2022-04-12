@@ -50,15 +50,25 @@ class PostController extends Controller
     public function update($id)
     {
 
+             return  redirect()->route('posts.index');
+
+
+        }
+
+
+    public function edit($id)
+    {
+
         $allPosts = $this->posts;
         foreach($allPosts as $key=> $post){
             if ($key+1 ==$id){
-                return view('posts.update',[
+                return view('posts.edit',[
                     'post' => $post,
                 ]);
             }
 
         }
+        dd($id);
 
     }
 }
