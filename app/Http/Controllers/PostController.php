@@ -49,10 +49,7 @@ class PostController extends Controller
 
     public function update($id)
     {
-
              return  redirect()->route('posts.index');
-
-
         }
 
 
@@ -71,4 +68,13 @@ class PostController extends Controller
         dd($id);
 
     }
+
+
+    public function destroy($id)
+    {
+        return  redirect()->route('posts.index');
+   }
 }
+
+
+
