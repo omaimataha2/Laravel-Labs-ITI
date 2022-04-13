@@ -23,6 +23,9 @@ class PostController extends Controller
         ]);
     }
 
+
+
+
     public function create()
     {
         $users = User::all();
@@ -30,6 +33,8 @@ class PostController extends Controller
             'users' => $users,
         ]);
     }
+
+
 
     public function store()
     {
@@ -53,6 +58,9 @@ class PostController extends Controller
         // return view('posts.store');
     }
 
+
+
+
     public function show($post)
     {
         //select * from posts where id = 1
@@ -75,6 +83,9 @@ class PostController extends Controller
 
     }
 
+
+
+
     public function update($post)
     {
         $post = Post::find($post);
@@ -87,6 +98,8 @@ class PostController extends Controller
         ]);
              return  to_route('posts.index');
         }
+
+
 
 
     public function edit($post)
@@ -107,6 +120,7 @@ class PostController extends Controller
         // dd($id);
 
     }
+
 
 
     public function destroy($post)
