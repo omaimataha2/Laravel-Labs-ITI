@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use PhpParser\Node\Expr\PostDec;
 use App\Models\Post;
 use App\Models\User;
-
+use App\Http\Requests\StorePostRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Validation\Validator as ValidationValidator;
 
 class PostController extends Controller
 {
@@ -39,7 +41,7 @@ class PostController extends Controller
 
 
 
-    public function store()
+    public function store(StorePostRequest $request)
     {
 
         //get me the request data
@@ -90,8 +92,10 @@ class PostController extends Controller
 
 
 
-    public function update($post)
+    public function update($post,StorePostRequest $request,$user_id)
     {
+
+
         $post = Post::find($post);
         $data = request()->all();
         $post->update([

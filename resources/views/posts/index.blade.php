@@ -3,6 +3,7 @@
 @section('title') This Is Index Page @endsection
 
 @section('content')
+<div class="container mx-4 justify-center ">
         <div class="text-center">
             <a href="{{ route('posts.create') }}" class="mt-4 btn btn-success">Create Post</a>
         </div>
@@ -38,11 +39,11 @@
               @endforeach
             </tbody>
           </table>
-          <div class="row mt-3 "style="display: inline">
+          <div class=" mt-4 ">
 
           {{ $posts->links() }}
 
         </div>
 
-
+        </div>
 @endsection
