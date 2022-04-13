@@ -7,6 +7,7 @@ use PhpParser\Node\Expr\PostDec;
 use App\Models\Post;
 use App\Models\User;
 
+
 class PostController extends Controller
 {
     // private $posts = [
@@ -16,12 +17,14 @@ class PostController extends Controller
     // ];
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(8);
+        // $posts = Post::all();
         // dd($posts); //stop execution and dump the variable
         return view('posts.index',[
             'allPosts' => $posts,
-        ]);
+        ],compact('posts'));
     }
+
 
 
 
@@ -38,6 +41,7 @@ class PostController extends Controller
 
     public function store()
     {
+
         //get me the request data
         // $data = $_REQUEST; don't use plain php in laravel framework
         $data = request()->all();
@@ -68,7 +72,7 @@ class PostController extends Controller
 
 
         // dd($post);
-        return view('posts.show',[ 'post' => $post]);
+        return view('posts.show',[ 'post' => $post, ]);
 
 
         // $allPosts = $this->posts;

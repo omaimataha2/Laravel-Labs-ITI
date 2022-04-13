@@ -16,6 +16,7 @@
                 <th scope="col">Actions</th>
               </tr>
             </thead>
+
             <tbody>
             @foreach ( $allPosts as $post)
               <tr>
@@ -37,4 +38,11 @@
               @endforeach
             </tbody>
           </table>
+          <div class="row mt-3 "style="display: inline">
+
+          {{ $posts->links() }}
+
+        </div>
+
+
 @endsection
