@@ -20,8 +20,8 @@
   Post Creator Info
   </div>
   <div class="card-body">
-    <h6 class="card-title">Name : {{$post['posted_by']}}</h6>
-    <h6 class="card-text">Created At : {{$post['created_at']}}</h6>
+    <h6 class="card-title">Name : {{$post->user->name}}</h6>
+    <h6 class="card-text">Created At : {{$post->created_at->format('D jS F  Y-m-d H:i:s ') }}</h6>
   </div>
 </div>
 
