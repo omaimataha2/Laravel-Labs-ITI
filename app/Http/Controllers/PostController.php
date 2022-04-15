@@ -7,6 +7,7 @@ use PhpParser\Node\Expr\PostDec;
 use App\Models\Post;
 use App\Models\User;
 use App\Http\Requests\StorePostRequest;
+use App\Models\Comment;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Validation\Validator as ValidationValidator;
 
@@ -70,11 +71,12 @@ class PostController extends Controller
     public function show($post)
     {
         //select * from posts where id = 1
+        $comments = Comment::all();
         $post = Post::find($post); //App\Models\Post
 
 
         // dd($post);
-        return view('posts.show',[ 'post' => $post, ]);
+        return view('posts.show',[ 'post' => $post,"comments"=>$comments ]);
 
 
         // $allPosts = $this->posts;

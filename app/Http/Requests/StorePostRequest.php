@@ -26,8 +26,9 @@ class StorePostRequest extends FormRequest
     {
 
         return [
+            // 'unique:posts,title'.$this->user_id
 
-            'title' => ['required', 'min:3','unique:posts,title'.($this->user_id=='' ? 0: $this->user_id ).',this->user_id'],
+            'title' => ['required', 'min:3','unique:posts,title'],
             'description' => ['required', 'min:10'],
         ];
     }
