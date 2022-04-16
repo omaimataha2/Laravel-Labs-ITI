@@ -53,9 +53,7 @@ class PostController extends Controller
 
         //store the request data in the db
         $post = Post::create([
-            // 'title' => $data['title'],
-            'title' =>$request->title,
-            // 'slug' => Str::slug($request->title,"-"),
+            'title' => $data['title'],
             'description' => $data['description'],
             'user_id' => $data['post_creator'],
 
@@ -98,7 +96,7 @@ class PostController extends Controller
 
 
 
-    public function update($post,StorePostRequest $request,$user_id)
+    public function update($post,StorePostRequest $request)
     {
 
 
