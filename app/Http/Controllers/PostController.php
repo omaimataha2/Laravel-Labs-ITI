@@ -10,6 +10,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Models\Comment;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Validation\Validator as ValidationValidator;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -51,12 +52,15 @@ class PostController extends Controller
         // $title = request()->title;
 
         //store the request data in the db
-        Post::create([
-            'title' => $data['title'],
+        $post = Post::create([
+            // 'title' => $data['title'],
+            'title' =>$request->title,
+            // 'slug' => Str::slug($request->title,"-"),
             'description' => $data['description'],
             'user_id' => $data['post_creator'],
 
         ]);
+        $newPost = $post->replicate();
 
         //redirect to /posts
         return to_route('posts.index');
