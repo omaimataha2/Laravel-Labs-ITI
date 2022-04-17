@@ -3,7 +3,7 @@
 @section('title')Create @endsection
 
 @section('content')
-      <form method="POST" action="{{route('posts.store')}}">
+      <form method="POST" action="{{route('posts.store')}}" enctype="multipart/form-data">
         @csrf
         <div class="mb-3 mt-3">
             <label for="exampleFormControlInput1" class="form-label">Title</label>
@@ -25,6 +25,10 @@
             </select>
             </select>
        </div>
+       <div class="mb-3">
+  <label for="formFile" class="form-label">Image</label>
+  <input class="form-control" type="file" id="formFile" name="avatar">
+</div>
 
           <div class="mb-3">
                 <button type="submit" class="btn btn-success">Create Post</button>

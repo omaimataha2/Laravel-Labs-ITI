@@ -20,6 +20,7 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->title(),
             'slug' => $this->faker->slug(),
+            'avatar'=> $this->faker->imageUrl($width = 50, $height = 50) ,
             'description' => $this->faker->paragraph(),
             'user_id' => User::factory(),
         ];

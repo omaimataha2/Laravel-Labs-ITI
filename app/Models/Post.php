@@ -24,6 +24,7 @@ class Post extends Model
         'title',
         'description',
         'user_id',
+        'avatar',
     ];
 
     public function user()

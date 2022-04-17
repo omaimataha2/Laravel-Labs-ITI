@@ -51,11 +51,24 @@ class PostController extends Controller
         $data = request()->all();
         // $title = request()->title;
 
+        //avatar
+        if($request->hasFile('avatar')){
+            $destination_path = 'public/images/posts';
+            $avatar=$request->file('avatar');
+            $avatar_name = $avatar->getClientOriginalName();
+            $path= $request->file('avatar')->storeAs($destination_path,$avatar_name)  ;
+
+            $data['avatar'] = $avatar_name;
+        }
+
+
+
         //store the request data in the db
         $post = Post::create([
             'title' => $data['title'],
             'description' => $data['description'],
             'user_id' => $data['post_creator'],
+            'avatar' => $data['avatar'],
 
         ]);
         $newPost = $post->replicate();

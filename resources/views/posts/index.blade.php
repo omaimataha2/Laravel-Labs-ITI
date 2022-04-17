@@ -15,6 +15,7 @@
                 <th scope="col">Slug</th>
                 <th scope="col">Posted By</th>
                 <th scope="col">Created At</th>
+                <th scope="col">Image</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
@@ -27,9 +28,10 @@
                 <td>{{$post->slug}}</td>
                 <td>{{$post->user ? $post->user->name : 'Not Found'}}</td>
                 <td>{{$post->created_at->format('Y-m-d')}}</td>
+                <td><img height="50px" src="{{asset('/storage/images/posts/'.$post->avatar)}}" /></td>
                 <td>
                     <a href="{{route('posts.show', ['post' => $post['id']])}}" class="btn btn-info">View</a>
-                    <a href="{{route('posts.edit', ['post' => $post['id']])}}" class="btn btn-primary">Edit</a>
+                    <a  href="{{route('posts.edit', ['post' => $post['id']])}}" class="btn btn-primary">Edit</a>
 
                     <form style="display:inline;" method="post" action="{{route('posts.destroy', ['post' => $post['id']])}}">
                     @csrf
