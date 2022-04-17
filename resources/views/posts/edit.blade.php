@@ -24,6 +24,10 @@
             </select>
 
        </div>
+       <div class="mb-3">
+         <label for="formFile" class="form-label">Image</label>
+         <input class="form-control" type="file" id="formFile" name="avatar" value="{{$post['avatar']}}">
+      </div>
 
           <div class="mb-3">
                 <button type="submit" class="btn btn-primary">Update</button>

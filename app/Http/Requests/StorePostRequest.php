@@ -22,14 +22,17 @@ class StorePostRequest extends FormRequest
      *
      * @return array
      */
-    public function rules($user_id='')
+    public function rules()
     {
 
         return [
-            // 'unique:posts,title'.$this->user_id
 
-            'title' => ['required', 'min:3','unique:posts,title'],
+
+            'title' => ['required', 'min:3', 'unique:posts,title,'.$this->title.',title',],
             'description' => ['required', 'min:10'],
+            'post_creator' => ['exists:App\Models\User,id'],
+            'avatar' => 'mimes:jpeg,jpg,png|required|max:10000'
+
         ];
     }
 
@@ -47,6 +50,8 @@ class StorePostRequest extends FormRequest
             'title.unique' => 'this Title already exists',
             'description.min' => 'Title must be more than 10 char',
             'description.required' => 'description required',
+            'avatar.required' => 'avatar required',
+
         ];
     }
 }
