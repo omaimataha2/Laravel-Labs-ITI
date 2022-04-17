@@ -3,7 +3,7 @@
 @section('title') Edit @endsection
 
 @section('content')
-      <form method="post" action="{{route('posts.update', ['post' => $post['id']])}}">
+      <form method="post" action="{{route('posts.update', ['post' => $post['id']])}}" enctype="multipart/form-data">
         @csrf
         @method('put')
         <div class="mb-3 mt-3">
