@@ -22,7 +22,7 @@ class PostController extends Controller
     // ];
     public function index()
     {
-        $posts = Post::paginate(8);
+        $posts = Post::with('user,comment')->paginate(8);
         // $posts = Post::all();
         // dd($posts); //stop execution and dump the variable
         return view('posts.index',[
