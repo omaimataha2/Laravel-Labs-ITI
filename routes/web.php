@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\Auth\LoginController; //== require
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CommentController;
+use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
 
 /*
@@ -54,7 +55,28 @@ Route::get('/auth/redirect', function () {
 Route::get('/auth/callback', function () {
     $user = Socialite::driver('github')->user();
 
-    // $user->token
+    $githubUser = Socialite::driver('github')->user();
+
+    $user = User::where('github_id', $githubUser->id)->first();
+
+    if ($user) {
+        $user->update([
+            'github_token' => $githubUser->token,
+            'github_refresh_token' => $githubUser->refreshToken,
+        ]);
+    } else {
+        $user = User::create([
+            'name' => $githubUser->name,
+            'email' => $githubUser->email,
+            'github_id' => $githubUser->id,
+            'github_token' => $githubUser->token,
+            'github_refresh_token' => $githubUser->refreshToken,
+        ]);
+    }
+
+    Auth::login($user);
+
+    return redirect('/dashboard');
 });
 
 Route::get('auth/google', [LoginController::class, 'redirectToGoogle']);
