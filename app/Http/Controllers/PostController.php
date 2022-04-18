@@ -153,6 +153,7 @@ class PostController extends Controller
     {
         Post::where('id',$post)->delete();
 
+        dispatch((new \App\Jobs\PruneOldPostsJob($post))->onQueue('posts'));
         return  to_route('posts.index');
    }
 }
