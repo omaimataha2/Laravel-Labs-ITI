@@ -7,6 +7,7 @@ use PhpParser\Node\Expr\PostDec;
 use App\Models\Post;
 use App\Models\User;
 use App\Http\Requests\StorePostRequest;
+use App\Jobs\PruneOldPostsJob;
 use App\Models\Comment;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Validation\Validator as ValidationValidator;
@@ -72,6 +73,7 @@ class PostController extends Controller
 
         ]);
         $newPost = $post->replicate();
+        PruneOldPostsJob::dispatch($post);
 
         //redirect to /posts
         return to_route('posts.index');
